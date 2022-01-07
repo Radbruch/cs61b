@@ -48,7 +48,7 @@ public final class StdAudio {
     private static int bufferSize = 0;    // number of samples currently in internal buffer
 
     // do not instantiate
-    private StdAudio() { }
+    public StdAudio() { }
 
    
     // static initializer
