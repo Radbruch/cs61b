@@ -73,6 +73,12 @@ public class HexWorld {
     }
 
 
+    /**
+     * Tesselate 19 random-tile and specified-size hexagons to form a world.
+     * @param world the 2D TETile[][] array to render.
+     * @param topPosition the upper-left position of the top hexagon.
+     * @param s size of a hexagon, must greater than or equal to 2.
+     */
     public static void TesselationOfHexagons(TETile[][] world, Position topPosition, int s) {
 
         topHexagon(world, topPosition, s);
