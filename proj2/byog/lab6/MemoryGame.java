@@ -20,13 +20,13 @@ public class MemoryGame {
 
     public static void main(String[] args) {
 
-        /** if (args.length < 1) {
+        if (args.length < 1) {
             System.out.println("Please enter a seed");
             return;
         }
-        */
-        //int seed = Integer.parseInt(args[0]);
-        int seed = 3456;
+
+        int seed = Integer.parseInt(args[0]);
+        // int seed = 3456;
         MemoryGame game = new MemoryGame(80, 40, seed);
         game.startGame();
 
@@ -94,9 +94,22 @@ public class MemoryGame {
         for (int i = 0; i < letterArray.length; i++) {
             String singleS = String.valueOf(letterArray[i]);
             StdDraw.clear(Color.BLACK);
+            // decoration on the top of screen.
+            StdDraw.line(0, height - 6, width, height - 6);
+            drawFrame("Round: " + round, 5, height-4);
+            drawFrame("Watch!", width / 2, height - 4);
+            drawFrame(ENCOURAGEMENT[0], width - 8, height - 4);
+
             drawFrame(singleS, x, y);
             StdDraw.pause(1000);
             StdDraw.clear(Color.BLACK);
+
+            // decoration on the top of screen.
+            StdDraw.line(0, height - 6, width, height - 6);
+            drawFrame("Round: " + round, 5, height-4);
+            drawFrame("Watch!", width / 2, height - 4);
+            drawFrame(ENCOURAGEMENT[0], width - 8, height - 4);
+
             drawFrame("", x, y);
             StdDraw.pause(500);
         }
@@ -130,15 +143,38 @@ public class MemoryGame {
     public void startGame() {
         //TODO: Set any relevant variables before the game starts
         round = 1;
-        gameOver = false;
+        gameOver = true;
         playerTurn = false;
+        // Wait until player press any key, game start.
+        StdDraw.clear(Color.black);
+        drawFrame("Press any key to start !", width / 2, height / 2);
+        int isPressed = 0;
+        while (isPressed == 0) {
+            if (StdDraw.hasNextKeyTyped()) {
+                isPressed = 1;
+                gameOver = false;
+            }
+        }
+        // decoration on the top of screen.
+        StdDraw.line(0, height - 6, width, height - 6);
+        drawFrame("Round: " + round, 5, height-4);
+        drawFrame("Watch!", width / 2, height - 4);
+        drawFrame(ENCOURAGEMENT[0], width - 8, height - 4);
+
         //TODO: Establish Game loop
         while (!gameOver) {
             // before every round, clear the screen.
             StdDraw.clear(Color.black);
+            // decoration on the top of screen.
+            StdDraw.line(0, height - 6, width, height - 6);
+            drawFrame("Round: " + round, 5, height-4);
+            drawFrame("Watch!", width / 2, height - 4);
+            drawFrame(ENCOURAGEMENT[0], width - 8, height - 4);
+
             // start round n, pause 3 seconds.
             drawFrame("Round " + round, width / 2, height / 2);
             StdDraw.pause(3000);
+
             // generate round length random string, display to player.
             String randomstr = generateRandomString(round);
             flashSequence(randomstr, width / 2, height / 2);
