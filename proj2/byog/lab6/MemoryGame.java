@@ -113,18 +113,25 @@ public class MemoryGame {
             drawFrame("", x, y);
             StdDraw.pause(500);
         }
+        StdDraw.clear(Color.black);
     }
 
     public String solicitNCharsInput(int n) {
         //TODO: Read n letters of player input
         StringBuilder strInput = new StringBuilder();
         int i = 0;
+        StdDraw.clear(Color.black);
+        int indent = 0;
         while (i < n) {
             if (StdDraw.hasNextKeyTyped()) {
-                strInput.append(StdDraw.nextKeyTyped());
+                char nextChar = StdDraw.nextKeyTyped();
+                strInput.append(nextChar);
+                drawFrame(String.valueOf(nextChar), width / 2 + indent, height / 2);
                 i++;
+                indent++;
             }
         }
+        StdDraw.pause(2000);
         return strInput.toString();
     }
 
@@ -180,6 +187,13 @@ public class MemoryGame {
             flashSequence(randomstr, width / 2, height / 2);
             // the character player type in is useless until it is player's turn to type in.
             String trushStr = trushNCharsInput();
+
+            // decoration on the top of screen.
+            StdDraw.line(0, height - 6, width, height - 6);
+            drawFrame("Round: " + round, 5, height-4);
+            drawFrame("Type!", width / 2, height - 4);
+            drawFrame(ENCOURAGEMENT[0], width - 8, height - 4);
+
             // tell player it's time to type in , and receive the content being typed.
             drawFrame("Now your turn to type", width / 2, height / 2);
             String playertype = solicitNCharsInput(round);
