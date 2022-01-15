@@ -38,6 +38,7 @@ public class Room {
 
     }
 
+
     private void generateRandomSize(TETile[][] world) {
         int distanceToHeight = Game.WIDTH - left_up.get(0) + 1;
         int boundToRight = Math.min(distanceToHeight, 7);
@@ -113,7 +114,7 @@ public class Room {
 
     public List<Integer> doorOpen2(TETile[][] world) {
         door_2 = selectDoorOpen();
-        while (door_2.equals(door_1)) {
+        while (door_2.get(2).equals(door_1.get(2))) {
             door_2 = selectDoorOpen();
         }
 

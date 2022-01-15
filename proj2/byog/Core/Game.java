@@ -3,7 +3,8 @@ package byog.Core;
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Game {
@@ -40,12 +41,13 @@ public class Game {
         initialize(finalWorldFrame);
 
 
-        Room room = new Room(finalWorldFrame, rand, 20, 10);
-        room.doorOpen1(finalWorldFrame);
-        room.doorOpen2(finalWorldFrame);
-        Room room1 = new Room(finalWorldFrame, rand, 40, 10);
-        room1.doorOpen1(finalWorldFrame);
-        room1.doorOpen2(finalWorldFrame);
+        Room room = new Room(finalWorldFrame, rand, 28, 18);
+        List<Integer> door1 = room.doorOpen1(finalWorldFrame);
+        Hallway hallway = new Hallway(finalWorldFrame, door1.get(0), door1.get(1), door1.get(2), rand);
+        hallway.doorOpen2(finalWorldFrame);
+        List<Integer> door2 = room.doorOpen2(finalWorldFrame);
+        Hallway hallway2 = new Hallway(finalWorldFrame, door2.get(0), door2.get(1), door2.get(2), rand);
+        hallway2.doorOpen2(finalWorldFrame);
         return finalWorldFrame;
     }
 
