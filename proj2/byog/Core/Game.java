@@ -11,7 +11,7 @@ public class Game {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
     public static final int WIDTH = 60;
-    public static final int HEIGHT = 40;
+    public static final int HEIGHT = 43;
     private Random rand;
 
     /**
@@ -41,7 +41,7 @@ public class Game {
         initialize(finalWorldFrame);
 
 
-        Room room = new Room(finalWorldFrame, rand, 20, 6);
+        Room room = new Room(finalWorldFrame, rand, 20, 7);
 
         List<Integer> room_door1 = room.doorOpen1(finalWorldFrame);
         Hallway room_hallway = new Hallway(finalWorldFrame, room_door1.get(0), room_door1.get(1), room_door1.get(2), rand);
@@ -148,6 +148,30 @@ public class Game {
         Hallway room17_hallway = new Hallway(finalWorldFrame, room17_door2.get(0), room17_door2.get(1), room17_door2.get(2), rand);
         List<Integer> room17_hallway_door2 = room17_hallway.doorOpen2(finalWorldFrame);
 
+        List<Integer> room7_hallway_door2 = room7_hallway.doorOpen2(finalWorldFrame);
+        HallwayToRoom room7Toroom18 = new HallwayToRoom(finalWorldFrame, room7_hallway_door2, rand);
+        Room room18 = room7Toroom18.room;
+        List<Integer> room18_door2 = room18.doorOpen2(finalWorldFrame);
+        Hallway room18_hallway = new Hallway(finalWorldFrame, room18_door2.get(0), room18_door2.get(1), room18_door2.get(2), rand);
+        List<Integer> room18_hallway_door2 = room18_hallway.doorOpen2(finalWorldFrame);
+
+        HallwayToRoom room18Toroom19 = new HallwayToRoom(finalWorldFrame, room18_hallway_door2, rand);
+        Room room19 = room18Toroom19.room;
+        List<Integer> room19_door2 = room19.doorOpen2(finalWorldFrame);
+        Hallway room19_hallway = new Hallway(finalWorldFrame, room19_door2.get(0), room19_door2.get(1), room19_door2.get(2), rand);
+        List<Integer> room19_hallway_door2 = room19_hallway.doorOpen2(finalWorldFrame);
+
+        HallwayToRoom room19Toroom20 = new HallwayToRoom(finalWorldFrame, room19_hallway_door2, rand);
+        Room room20 = room19Toroom20.room;
+        List<Integer> room20_door2 = room20.doorOpen2(finalWorldFrame);
+        Hallway room20_hallway = new Hallway(finalWorldFrame, room20_door2.get(0), room20_door2.get(1), room20_door2.get(2), rand);
+        //List<Integer> room20_hallway_door2 = room20_hallway.doorOpen2(finalWorldFrame);
+
+        //HallwayToRoom room20Toroom21 = new HallwayToRoom(finalWorldFrame, room20_hallway_door2, rand);
+        //Room room21 = room20Toroom21.room;
+        //List<Integer> room21_door2 = room21.doorOpen2(finalWorldFrame);
+        //Hallway room21_hallway = new Hallway(finalWorldFrame, room21_door2.get(0), room21_door2.get(1), room21_door2.get(2), rand);
+        //List<Integer> room21_hallway_door2 = room21_hallway.doorOpen2(finalWorldFrame);
 
 
         return finalWorldFrame;
