@@ -66,8 +66,8 @@ public class Room {
     private void generateRandomSize(TETile[][] world) {
         int distanceToHeight = Game.WIDTH - left_up.get(0) + 1;
         int boundToRight = Math.min(distanceToHeight, 7);
-        int w = rand.nextInt(1, boundToRight);
-        int h = rand.nextInt(1, 7);
+        int w = rand.nextInt(3, boundToRight);
+        int h = rand.nextInt(3, 7);
         width = w;
         height = h;
         right_down.add(left_up.get(0) + width + 1);

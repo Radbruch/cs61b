@@ -30,7 +30,7 @@ public class HallwayToRoom {
     }
 
     private void generateRandomSize(TETile[][] world) {
-        int w = rand.nextInt(1, 7);
+        int w = rand.nextInt(2, 8);
         int h = rand.nextInt(1,7);
 
         if (doorOfHallway.get(2) == 0) {

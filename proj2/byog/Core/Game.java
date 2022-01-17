@@ -165,14 +165,10 @@ public class Game {
         Room room20 = room19Toroom20.room;
         List<Integer> room20_door2 = room20.doorOpen2(finalWorldFrame);
         Hallway room20_hallway = new Hallway(finalWorldFrame, room20_door2.get(0), room20_door2.get(1), room20_door2.get(2), rand);
-        //List<Integer> room20_hallway_door2 = room20_hallway.doorOpen2(finalWorldFrame);
+        List<Integer> room20_hallway_door2 = room20_hallway.doorOpen2(finalWorldFrame);
 
-        //HallwayToRoom room20Toroom21 = new HallwayToRoom(finalWorldFrame, room20_hallway_door2, rand);
-        //Room room21 = room20Toroom21.room;
-        //List<Integer> room21_door2 = room21.doorOpen2(finalWorldFrame);
-        //Hallway room21_hallway = new Hallway(finalWorldFrame, room21_door2.get(0), room21_door2.get(1), room21_door2.get(2), rand);
-        //List<Integer> room21_hallway_door2 = room21_hallway.doorOpen2(finalWorldFrame);
-
+        finalWorldFrame[room20_hallway_door2.get(0)][room20_hallway_door2.get(1)] = Tileset.UNLOCKED_DOOR;
+        finalWorldFrame[room20_hallway_door2.get(0) + 1][room20_hallway_door2.get(1)] = Tileset.PLAYER;
 
         return finalWorldFrame;
     }

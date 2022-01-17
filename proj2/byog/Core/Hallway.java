@@ -26,8 +26,6 @@ public class Hallway {
         left_up = new ArrayList<>(2);
         right_down = new ArrayList<>(2);
 
-
-
         switch (direction) {
             case 0:
                 door1_direction = "bottom";
@@ -68,7 +66,7 @@ public class Hallway {
     }
 
     private void generateRandomSize(TETile[][] world) {
-        int length = rand.nextInt(1, 4);
+        int length = rand.nextInt(1, 2);
         switch (rand.nextInt(2)) {
             case 0: // vertical
                 width = 1;
