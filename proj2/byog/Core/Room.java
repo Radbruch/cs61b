@@ -16,8 +16,8 @@ public class Room {
     private Random rand;
     private int width;
     private int height;
-    ArrayList<Integer> top;
-    ArrayList<Integer> left;
+    private ArrayList<Integer> top;
+    private ArrayList<Integer> left;
 
 
     public Room(TETile[][] world, Random random, int x, int y) {
@@ -38,6 +38,30 @@ public class Room {
 
     }
 
+    public Room(TETile[][] world, int x, int y, int wid, int hei, int door1_x, int door1_y, int direction, Random random) {
+        rand = random;
+
+        width = wid;
+        height = hei;
+        left_up = new ArrayList<>(2);
+        right_down = new ArrayList<>(2);
+        left_up.add(x);
+        left_up.add(y);
+        right_down.add(x + width + 1);
+        right_down.add(y - height - 1);
+
+        door_1 = new ArrayList<>(3);
+        door_1.add(door1_x);
+        door_1.add(door1_y);
+        door_1.add(direction);
+
+        PaintHelper paint = new PaintHelper();
+        paint.top(world, left_up.get(0), left_up.get(1), width);
+        paint.top(world, left_up.get(0), right_down.get(1), width);
+        for (int h = right_down.get(1) + 1; h < left_up.get(1); h++){
+            paint.middle(world, left_up.get(0), h, width);
+        }
+    }
 
     private void generateRandomSize(TETile[][] world) {
         int distanceToHeight = Game.WIDTH - left_up.get(0) + 1;
