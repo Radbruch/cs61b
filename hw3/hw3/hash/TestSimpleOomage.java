@@ -1,5 +1,7 @@
-package hw3.hash;
+package hash;
 
+import edu.princeton.cs.algs4.RedBlackBST;
+import edu.princeton.cs.algs4.StdOut;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -29,7 +31,30 @@ public class TestSimpleOomage {
           meaning no two SimpleOomages should EVER have the same
           hashCode UNLESS they have the same red, blue, and green values!
          */
+        // for each possible combination in SimpleOomages, it has a unique hashcode.
+        // So I go through all the possibilities and store the hashcode for each combination
+        // in the RedBlackBST. If there are duplicate key in the RedBlackBST, count+=1.
+        // Finally, if count is not equal to 0, it means my HashCode method in SimpleOomage fails.
+
+        int count = 0;
+        RedBlackBST hashCodeTree = new RedBlackBST();
+        for (int i = 0; i <= 51; i++) {
+            for (int j = 0; j <= 51; j++) {
+                for (int k = 0; k <= 51; k++) {
+                    SimpleOomage s = new SimpleOomage(i*5, j*5, k*5);
+                    int key = s.hashCode();
+                    if (hashCodeTree.contains(key)) {
+                        count++;
+                    }
+                    else {
+                        hashCodeTree.put(key, 1);
+                    }
+                }
+            }
+        }
+        assertTrue(count == 0);
     }
+
 
     @Test
     public void testEquals() {
@@ -42,7 +67,7 @@ public class TestSimpleOomage {
         assertNotEquals(ooA, "ketchup");
     }
 
-    /*
+
     @Test
     public void testHashCodeAndEqualsConsistency() {
         SimpleOomage ooA = new SimpleOomage(5, 10, 20);
@@ -50,10 +75,10 @@ public class TestSimpleOomage {
         HashSet<SimpleOomage> hashSet = new HashSet<>();
         hashSet.add(ooA);
         assertTrue(hashSet.contains(ooA2));
-    }*/
+    }
 
     /* TODO: Uncomment this test after you finish haveNiceHashCode Spread in OomageTestUtility */
-    /*@Test
+    @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
         int N = 10000;
@@ -63,7 +88,7 @@ public class TestSimpleOomage {
         }
 
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
-    }*/
+    }
 
     /** Calls tests for SimpleOomage. */
     public static void main(String[] args) {
