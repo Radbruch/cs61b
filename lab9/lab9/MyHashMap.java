@@ -17,6 +17,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     private ArrayMap<K, V>[] buckets;
     private int size;
 
+
     private int loadFactor() {
         return size / buckets.length;
     }
@@ -48,24 +49,52 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         return Math.floorMod(key.hashCode(), numBuckets);
     }
 
+
+
+    public boolean containsKey(K key) {
+        if (key == null) throw new IllegalArgumentException("Hashmap never contains null");
+        return !get(key).equals(null);
+    }
+
     /* Returns the value to which the specified key is mapped, or null if this
      * map contains no mapping for the key.
      */
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException();
+        if (key == null) throw new IllegalArgumentException("Can not get null in hashmap");
+        int hashcode = hash(key);
+        return buckets[hashcode].get(key);
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+        if (key == null) throw new IllegalArgumentException("Can not put null in hashmap");
+        if (!containsKey(key)) this.size++;
+        int hashcode = hash(key);
+        if (this.buckets[hashcode] == null) {
+            this.buckets[hashcode] = new ArrayMap<>();
+            this.buckets[hashcode].put(key, value);
+        } else {
+            this.buckets[hashcode].put(key, value);
+        }
+        if (loadFactor() == 1) resize(buckets.length * 2);
+    }
+
+    private void resize(int capacity) {
+        ArrayMap<K, V>[] newBuckets = new ArrayMap[capacity];
+        for (int i = 0; i < buckets.length; i++) {
+            if (buckets[i] == null) continue;
+            newBuckets[i] = buckets[i];
+
+        }
+        this.buckets = newBuckets;
     }
 
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
